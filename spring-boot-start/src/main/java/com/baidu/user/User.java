@@ -12,6 +12,14 @@ public class User {
 	private int id;
 	private String name;
 	private int age;
+	private String des;
+	
+	public String getDes() {
+		return des;
+	}
+	public void setDes(String des) {
+		this.des = des;
+	}
 	public int getId() {
 		return id;
 	}

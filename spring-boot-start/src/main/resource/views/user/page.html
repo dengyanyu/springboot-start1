@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+	<a href="toadd">添加</a><br>
+	
+	<form id="sf" style="border:1px solid red;padding:5px;" method="get" action="page">
+		姓名：<input name="name" th:value="${u.name}"><br>
+		描述：<input name="des" th:value="${u.des}"><br>
+	
+		当前页:<input id="pn" name="pn" th:value="${page.number+1}"><br>
+		每页长度:<input name="ps" th:value="${page.size}"><br>
+		 <input type="submit" value="查询">
+	</form>
+	
+	<script>
+		function go(p){
+			//1 修改当前页码值
+			document.getElementById("pn").value=p;
+			//2 提交表单
+			document.getElementById("sf").submit();
+		}
+	</script>
+	
+	<a href="javascript:go(1);">首页</a>
+	<a th:href=@{'javascript:go('+${page.number}+')'} th:if="${page.number gt 0}">上一页</a>
+	
+	<a th:href=@{'javascript:go('+${page.number-2}+')'} th:if="${page.number-2 gt 0}" th:text="${page.number-2}"></a>
+	<a th:href=@{'javascript:go('+${page.number-1}+')'} th:if="${page.number-1 gt 0}" th:text="${page.number-1}"></a>
+	<a th:href=@{'javascript:go('+${page.number}+')'} th:if="${page.number gt 0}" th:text="${page.number}"></a>
+	<a style="color:red;border:1px solid #000;padding:3px;" th:text="${page.number+1}"></a>
+	<a th:href=@{'javascript:go('+${page.number+2}+')'} th:if="${page.number+1 lt page.totalPages}" th:text="${page.number+2}"></a>
+	<a th:href=@{'javascript:go('+${page.number+3}+')'} th:if="${page.number+2 lt page.totalPages}" th:text="${page.number+3}"></a>
+	<a th:href=@{'javascript:go('+${page.number+4}+')'} th:if="${page.number+3 lt page.totalPages}" th:text="${page.number+4}"></a>
+	
+	<a th:href=@{'javascript:go('+${page.number+2}+')'} th:if="${page.number+1 lt page.totalPages}">下一页</a>
+	<a th:href=@{'javascript:go('+${page.totalPages}+')'}>尾页</a>
+	
+    <table  border="1">
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>AGE</th>
+            <th>DES</th>
+        </tr>
+        <tr th:each="u : ${page.content}">
+            <td th:text="${u.id}">1</td>
+            <td th:text="${u.name}">海</td>
+            <td th:text="${u.age}">18</td>
+            <td th:text="${u.des}">18</td>
+        </tr>
+    </table>
+</body>
+</html>
