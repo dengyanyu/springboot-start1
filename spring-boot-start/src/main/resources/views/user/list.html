@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+	<a href="toadd">添加</a>
+    <table  border="1">
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>AGE</th>
+        </tr>
+        <tr th:each="u : ${userList}">
+            <td th:text="${u.id}">1</td>
+            <td th:text="${u.name}">海</td>
+            <td th:text="${u.age}">18</td>
+        </tr>
+    </table>
+</body>
+</html>
