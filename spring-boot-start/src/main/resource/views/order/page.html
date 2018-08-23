@@ -9,8 +9,8 @@
 	<a href="toadd">添加</a><br>
 	
 	<form id="sf" style="border:1px solid red;padding:5px;" method="get" action="page">
-		姓名：<input name="name" th:value="${u.name}"><br>
-		描述：<input name="des" th:value="${u.des}"><br>
+		订单编号：<input name="NO" th:value="${o.NO}"><br>
+		订单状态：<input name="status" th:value="${o.status}"><br>
 	
 		当前页:<input id="pn" name="pn" th:value="${page.number+1}"><br>
 		每页长度:<input name="ps" th:value="${page.size}"><br>
@@ -31,15 +31,15 @@
     <table  border="1">
         <tr>
             <th>ID</th>
-            <th>NAME</th>
-            <th>AGE</th>
-            <th>DES</th>
+            <th>NO</th>
+            <th>dt</th>
+            <th>status</th>
         </tr>
-        <tr th:each="u : ${page.content}">
-            <td th:text="${u.id}">1</td>
-            <td th:text="${u.name}">海</td>
-            <td th:text="${u.age}">18</td>
-            <td th:text="${u.des}">18</td>
+        <tr th:each="o : ${page.content}">
+            <td th:text="${o.id}">1</td>
+            <td th:text="${o.NO}">海</td>
+            <td th:text="${o.dt}">18</td>
+            <td th:text="${o.status}">18</td>
         </tr>
     </table>
 </body>

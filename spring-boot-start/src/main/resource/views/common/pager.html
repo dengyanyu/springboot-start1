@@ -1,0 +1,16 @@
+  <div th:fragment="bar">
+  	<a href="javascript:go(1);">首页</a>
+	<a th:href=@{'javascript:go('+${page.number}+')'} th:if="${page.number gt 0}">上一页</a>
+	
+	<a th:href=@{'javascript:go('+${page.number-2}+')'} th:if="${page.number-2 gt 0}" th:text="${page.number-2}"></a>
+	<a th:href=@{'javascript:go('+${page.number-1}+')'} th:if="${page.number-1 gt 0}" th:text="${page.number-1}"></a>
+	<a th:href=@{'javascript:go('+${page.number}+')'} th:if="${page.number gt 0}" th:text="${page.number}"></a>
+	<a style="color:red;border:1px solid #000;padding:3px;" th:text="${page.number+1}"></a>
+	<a th:href=@{'javascript:go('+${page.number+2}+')'} th:if="${page.number+1 lt page.totalPages}" th:text="${page.number+2}"></a>
+	<a th:href=@{'javascript:go('+${page.number+3}+')'} th:if="${page.number+2 lt page.totalPages}" th:text="${page.number+3}"></a>
+	<a th:href=@{'javascript:go('+${page.number+4}+')'} th:if="${page.number+3 lt page.totalPages}" th:text="${page.number+4}"></a>
+	
+	<a th:href=@{'javascript:go('+${page.number+2}+')'} th:if="${page.number+1 lt page.totalPages}">下一页</a>
+	<a th:href=@{'javascript:go('+${page.totalPages}+')'}>尾页</a>
+	
+  </div>
